@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 using namespace std;
 
 struct song
@@ -16,26 +17,28 @@ song link_to_song(string link)
     return s;
 }
 
+vector<string> read_Playlist(string file_Name){
+    ifstream read_File(file_Name);
+    vector<string> links;
+    string song_Link;
+    while (getline(read_File, song_Link))
+    {
+        links.push_back(song_Link);
+    }
+    read_File.close();
+    return links;
+}
+
 int main()
 {
     // example 6MoTeX5dtuPZ3hwaecuBkz
     string song_link = "6MoTeX5dtuPZ3hwaecuBkz";
     song boris1 = link_to_song(song_link);
 
-    // Create a text string, which is used to output the text file
-    string myText;
-
-    // Read from the text file
-    ifstream MyReadFile("boris.txt");
-
-    // Use a while loop together with the getline() function to read the file line by line
-    while (getline(MyReadFile, myText))
-    {
-        // Output the text from the file
-        cout << myText;
-        cout << "\n";
+    vector<string> link_Playlist = read_Playlist("boris.txt");
+    for (const string& i : link_Playlist){
+        cout << i << "\n";
     }
 
-    // Close the file
-    MyReadFile.close();
+    return 0;
 }
