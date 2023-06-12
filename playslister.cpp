@@ -52,5 +52,11 @@ int main()
     for (const song& i : songs_janelle){
         cout << i.id << "\n";
     }
+
+    /*  Mixing strategy:
+        1. compile list of specified length from given vector.
+        2. add both compiled lists together.
+    */
+
     return 0;
 }
