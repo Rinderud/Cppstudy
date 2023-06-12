@@ -7,7 +7,7 @@ using namespace std;
 struct song
 {
     string id;
-    // If possible, duration!
+    float dur_min = 3.0; // Average time of a song is 3 minutes.
 };
 
 song link_to_song(string link)
@@ -33,16 +33,24 @@ vector<string> read_Playlist(string file_Name){
 
 int main()
 {
-    vector<string> link_Playlist = read_Playlist("boris.txt");
-
-    vector<song> song_Playlist;
-    for (const string& i : link_Playlist){
-        song_Playlist.push_back(link_to_song(i));
+    vector<string> links_boris = read_Playlist("boris.txt");
+    vector<song> songs_boris;
+    for (const string& i : links_boris){
+        songs_boris.push_back(link_to_song(i));
     }
-
-    for (const song& i : song_Playlist){
+    cout << "\nBoris songs, ids\n";
+    for (const song& i : songs_boris){
         cout << i.id << "\n";
     }
-
+    
+    vector<string> links_janelle = read_Playlist("janelle.txt");
+    vector<song> songs_janelle;
+    for (const string& i : links_janelle){
+        songs_janelle.push_back(link_to_song(i));
+    }
+    cout << "\nJanelle songs, ids\n";
+    for (const song& i : songs_janelle){
+        cout << i.id << "\n";
+    }
     return 0;
 }
