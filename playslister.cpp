@@ -13,7 +13,9 @@ struct song
 song link_to_song(string link)
 {
     song s;
-    s.id = link;
+    string link_str = "https://open.spotify.com/track/";
+    string id_str = link.substr(link_str.size());
+    s.id = id_str;
     return s;
 }
 
@@ -31,13 +33,15 @@ vector<string> read_Playlist(string file_Name){
 
 int main()
 {
-    // example 6MoTeX5dtuPZ3hwaecuBkz
-    string song_link = "6MoTeX5dtuPZ3hwaecuBkz";
-    song boris1 = link_to_song(song_link);
-
     vector<string> link_Playlist = read_Playlist("boris.txt");
+
+    vector<song> song_Playlist;
     for (const string& i : link_Playlist){
-        cout << i << "\n";
+        song_Playlist.push_back(link_to_song(i));
+    }
+
+    for (const song& i : song_Playlist){
+        cout << i.id << "\n";
     }
 
     return 0;
